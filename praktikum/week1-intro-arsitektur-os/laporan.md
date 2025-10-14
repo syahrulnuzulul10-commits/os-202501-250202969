@@ -1,13 +1,13 @@
 
-# Laporan Praktikum Minggu [X]
+# Laporan Praktikum Minggu 1
 Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
 
 ---
 
 ## Identitas
-- **Nama**  : [Nama Mahasiswa]  
-- **NIM**   : [NIM Mahasiswa]  
-- **Kelas** : [Kelas]
+- **Nama**  : Syahrul Nuzulul Qori  
+- **NIM**   : 250202969
+- **Kelas** : 1IKRA
 
 ---
 
@@ -60,12 +60,12 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 ---
 
 ## Quiz
-1. [Pertanyaan 1]  
-   **Jawaban:**  
-2. [Pertanyaan 2]  
-   **Jawaban:**  
-3. [Pertanyaan 3]  
-   **Jawaban:**  
+1. Sebutkan tiga fungsi utama sistem operasi. 
+   **Jawaban:**  Tiga fungsi utama sistem operasi adalah Manajemen Sumber Daya, Manajemen Proses dan File, serta Penyediaan Antarmuka Pengguna.
+2. Jelaskan perbedaan antara kernel mode dan user mode.
+   **Jawaban:**  tiga fungsi utama sistem operasi adalah Manajemen Sumber Daya (mengelola perangkat keras seperti CPU dan memori), Manajemen Proses dan File (mengelola eksekusi program dan sistem berkas), serta Penyediaan Antarmuka Pengguna (menyediakan cara bagi pengguna untuk berinteraksi dengan komputer)
+3. Sebutkan contoh OS dengan arsitektur monolithic dan microkernel.
+   **Jawaban:**  Contoh sistem operasi (OS) dengan arsitektur monolitik adalah Linux dan UNIX tradisional.
 
 ---
 
