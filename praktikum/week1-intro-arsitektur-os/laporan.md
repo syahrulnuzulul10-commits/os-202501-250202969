@@ -21,6 +21,7 @@ Contoh:
 3.Membandingkan model arsitektur sistem operasi, yaitu monolithic kernel, layered approach, dan microkernel.
 
 4.Membuat diagram sederhana arsitektur OS menggunakan alat bantu digital (misalnya draw.io atau Mermaid)
+
 jawaban
 1. Menjelaskan konsep dan fungsi system call dalam sistem operasi
 
