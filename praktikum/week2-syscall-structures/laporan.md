@@ -123,10 +123,11 @@ dmesg | tail -n 10
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
+<img width="1919" height="1024" alt="Cuplikan layar 2025-10-15 194612" src="https://github.com/user-attachments/assets/8e694378-61f0-4fb6-abb2-64ff39dc0c00" />
 
 
 ---
-<img width="1176" height="427" alt="Cuplikan layar 2025-10-15 182112" src="https://github.com/user-attachments/assets/dda66dc2-4575-42ca-9046-067a4551f318" />
+
 
 ## Analisis
 1). Analisis bagaimana file dibuka, dibaca, dan ditutup oleh kernel.
