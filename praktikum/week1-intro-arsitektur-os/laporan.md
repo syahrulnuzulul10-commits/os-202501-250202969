@@ -20,19 +20,51 @@ Contoh:
 
 3.Membandingkan model arsitektur sistem operasi, yaitu monolithic kernel, layered approach, dan microkernel.
 
-4.Membuat diagram sederhana arsitektur OS menggunakan alat bantu digital (misalnya draw.io atau Mermaid).
+4.Membuat diagram sederhana arsitektur OS menggunakan alat bantu digital (misalnya draw.io atau Mermaid)
+jawaban
+1. Menjelaskan konsep dan fungsi system call dalam sistem operasi
+
+Tujuan ini agar mahasiswa memahami bahwa system call adalah jembatan komunikasi antara program aplikasi dan kernel. Program tidak bisa langsung mengakses perangkat keras, sehingga system call digunakan untuk meminta layanan seperti membuka file, membaca data, membuat proses, atau berkomunikasi antarproses. Dengan memahami konsep ini, mahasiswa tahu bagaimana sistem operasi melayani perintah dari aplikasi.
+
+2. Mengidentifikasi jenis-jenis system call dan fungsinya
+
+Mahasiswa diharapkan dapat mengenali beberapa kategori utama system call, seperti:
+
+Process Control: mengatur proses (contoh: fork(), exec(), exit()),
+
+File Management: mengelola file (open(), read(), write()),
+
+Device Management: berhubungan dengan perangkat (ioctl()),
+
+Communication: mengatur komunikasi antarproses (pipe(), socket()).
+Tujuan ini penting agar mahasiswa mengetahui fungsi dan peran masing-masing jenis system call dalam sistem operasi.
+
+3. Mengamati alur perpindahan mode eksekusi dari user mode ke kernel mode
+
+Tujuan ini membantu mahasiswa memahami mekanisme transisi antara dua mode CPU:
+
+User mode → tempat program biasa berjalan dengan hak akses terbatas.
+
+Kernel mode → tempat kernel menjalankan operasi dengan hak akses penuh.
+Saat system call dipanggil, CPU berpindah dari user mode ke kernel mode agar operasi dapat dilakukan dengan aman dan dikontrol oleh OS.
+
+4. Menggunakan perintah Linux untuk menampilkan dan menganalisis system call
+
+Mahasiswa belajar menggunakan perintah seperti:
+
+strace → untuk melacak system call yang dijalankan oleh suatu program,
+
+dmesg → untuk melihat log aktivitas kernel.
+Tujuan ini agar mahasiswa dapat melihat langsung interaksi antara aplikasi dan kernel, sehingga memahami bagaimana sistem operasi bekerja secara nyata, bukan hanya secara teori.
 
 ---
 
 ## Dasar Teori
-1.Definisi dan Fungsi Sistem Operasi: Sistem operasi adalah perangkat lunak yang mengelola hardware dan software resources, menyediakan interface untuk pengguna, dan memastikan eksekusi program yang efisien.
-2.Manajemen Proses: Ini mencakup bagaimana OS menangani proses, termasuk pembuatan, penjadwalan, dan terminasi. Teori penjadwalan seperti FCFS, Round Robin, dll.
-3.Manajemen Memori: Bagaimana OS mengalokasikan dan mengelola memori, termasuk paging, segmentation, dan virtual memory.
-4.Manajemen File: Sistem file, bagaimana data disimpan, diakses, dan dikelola.
-5.Sincronisasi dan Komunikasi Proses: Untuk sistem multiprogramming, termasuk mutex, semaphore, dan interprocess communication.
+Sistem Operasi (OS) merupakan komponen paling penting dalam komputer, karena tanpa OS, perangkat keras tidak dapat digunakan secara efektif oleh pengguna. OS berfungsi sebagai penghubung antara pengguna, aplikasi, dan perangkat keras, sehingga semua komponen komputer dapat bekerja secara terkoordinasi.
 
----
+Di dalam OS terdapat kernel, yaitu bagian inti yang bertugas mengatur seluruh sumber daya sistem, seperti CPU untuk menjalankan proses, memori untuk penyimpanan sementara, hard disk/SSD untuk penyimpanan data permanen, serta perangkat input/output untuk komunikasi dengan pengguna.
 
+Kernel memastikan bahwa setiap program mendapatkan sumber daya yang dibutuhkan secara adil dan aman, mencegah konflik antarproses, dan menjaga kestabilan sistem. Dengan demikian, sistem operasi memungkinkan komputer berfungsi dengan efisien, stabil, dan mudah digunakan, baik oleh pengguna langsung maupun oleh aplikasi yang berjalan di atasnya.
 ## Langkah Praktikum
 1. Langkah-langkah yang dilakukan.  
 2. Perintah yang dijalankan.  
@@ -62,8 +94,8 @@ Sertakan screenshot hasil percobaan atau diagram:
 - Jelaskan makna hasil percobaan.  
 - Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
 - Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?
-  jawaban
-  1. Analisis Hasil Percobaan
+  jawaba
+1. Analisis Hasil Percobaan
 
 Perintah yang dijalankan:
 
@@ -84,7 +116,7 @@ lsmod | head → menampilkan modul kernel yang aktif.
 dmesg | head → menampilkan pesan awal kernel saat boot.
 ➜ Terlihat bahwa kernel mendeteksi CPU dan memori dari BIOS serta melakukan inisialisasi sistem — ini adalah bagian dari proses booting kernel.
 
-⚙️ 2. Hubungan dengan Teori Sistem Operasi
+2. Hubungan dengan Teori Sistem Operasi
 
 Fungsi Kernel:
 Kernel adalah inti dari OS yang mengelola sumber daya (CPU, memori, I/O).
@@ -97,7 +129,7 @@ Arsitektur OS:
 Lingkungan ini menggunakan arsitektur monolithic kernel (Linux) di mana modul seperti kvm, battery, dan intel_rapl dimuat langsung ke kernel.
 Walaupun dijalankan di Windows, kernel Linux-nya tetap berdiri sendiri dalam lapisan virtualisasi (WSL2) — contoh implementasi hybrid architecture antara Linux dan Windows.
 
-🪟 3. Perbedaan di Lingkungan OS Berbeda
+3. Perbedaan di Lingkungan OS Berbeda
 Aspek	Linux (WSL2 / Native)	Windows
 Kernel	Menggunakan kernel Linux monolithic	Kernel Windows (NT Kernel)
 System Call	Menggunakan syscall Linux (POSIX) seperti uname(), getuid()	Menggunakan Windows API (Win32, NTAPI)
