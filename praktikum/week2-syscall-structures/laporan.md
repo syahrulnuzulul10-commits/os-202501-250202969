@@ -124,6 +124,7 @@ dmesg | tail -n 10
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
 <img width="1919" height="1024" alt="Cuplikan layar 2025-10-15 194612" src="https://github.com/user-attachments/assets/8e694378-61f0-4fb6-abb2-64ff39dc0c00" />
+<img width="1176" height="427" alt="Cuplikan layar 2025-10-15 182112" src="https://github.com/user-attachments/assets/4beb1cd7-8883-4a36-b714-5ecfe86ee654" />
 
 
 ---
