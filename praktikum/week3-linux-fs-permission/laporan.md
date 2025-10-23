@@ -102,6 +102,30 @@ Kombinasi antara permission (chmod) dan ownership (chown) merupakan dasar sistem
    ```
 
 ---
+## Kode / Perintah
+Tuliskan potongan kode atau perintah utama:
+ ```bash
+   pwd
+   ls -l
+   cd /tmp
+   ls -a
+   ```
+ ```bash
+   cat /etc/passwd | head -n 5
+   ```
+```bash
+   echo "Hello <NAME><NIM>" > percobaan.txt
+   ls -l percobaan.txt
+   chmod 600 percobaan.txt
+   ls -l percobaan.txt
+   ```
+ ```bash
+   sudo chown root percobaan.txt
+   ls -l percobaan.txt
+   ```
+
+---
+  
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
