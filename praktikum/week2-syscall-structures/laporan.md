@@ -105,10 +105,48 @@ Percobaan dengan perintah strace dan dmesg digunakan untuk mengamati aktivitas s
 ---
 
 ## Langkah Praktikum
-1. Langkah-langkah yang dilakukan.  
-2. Perintah yang dijalankan.  
-3. File dan kode yang dibuat.  
-4. Commit message yang digunakan.
+1. **Setup Environment**
+   - Gunakan Linux (Ubuntu/WSL).
+   - Pastikan perintah `strace` dan `man` sudah terinstal.
+   - Konfigurasikan Git (jika belum dilakukan di minggu sebelumnya).
+
+2. **Eksperimen 1 – Analisis System Call**
+   Jalankan perintah berikut:
+   ```bash
+   strace ls
+   ```
+   > Catat 5–10 system call pertama yang muncul dan jelaskan fungsinya.  
+   Simpan hasil analisis ke `results/syscall_ls.txt`.
+
+3. **Eksperimen 2 – Menelusuri System Call File I/O**
+   Jalankan:
+   ```bash
+   strace -e trace=open,read,write,close cat /etc/passwd
+   ```
+   > Analisis bagaimana file dibuka, dibaca, dan ditutup oleh kernel.
+
+4. **Eksperimen 3 – Mode User vs Kernel**
+   Jalankan:
+   ```bash
+   dmesg | tail -n 10
+   ```
+   > Amati log kernel yang muncul. Apa bedanya output ini dengan output dari program biasa?
+
+5. **Diagram Alur System Call**
+   - Buat diagram yang menggambarkan alur eksekusi system call dari program user hingga kernel dan kembali lagi ke user mode.
+   - Gunakan draw.io / mermaid.
+   - Simpan di:
+     ```
+     praktikum/week2-syscall-structure/screenshots/syscall-diagram.png
+     ```
+
+6. **Commit & Push**
+   ```bash
+   git add .
+   git commit -m "Minggu 2 - Struktur System Call dan Kernel Interaction"
+   git push origin main
+   ```
+
 
 ---
 
@@ -219,6 +257,37 @@ Memberikan laporan status sistem yang tidak terlihat oleh program biasa.
 Menunjukkan bahwa kernel bekerja di belakang layar mengatur seluruh perangkat dan proses di sistem.
 
 ---
+## Hasil Observasi
+**Tabel Observasi Hasil Eksperimen strace**
+| No | System Call | Deskripsi Fungsi                                                                               | Keterangan / Hasil Observasi                                                 |
+| -- | ----------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| 1  | `execve()`  | Menjalankan program baru (dalam hal ini `/usr/bin/ls`) dengan argumen dan variabel lingkungan. | Proses dimulai, sistem menjalankan perintah `ls`.                            |
+| 2  | `brk()`     | Mengatur batas ruang memori proses untuk alokasi dinamis (heap).                               | Kernel menyesuaikan memori yang dibutuhkan program.                          |
+| 3  | `mmap()`    | Memetakan file atau perangkat ke memori virtual proses.                                        | Digunakan untuk mengalokasikan ruang memori tambahan.                        |
+| 4  | `access()`  | Mengecek izin akses terhadap file tertentu.                                                    | Mengecek file konfigurasi `/etc/ld.so.preload`, hasilnya tidak ada (ENOENT). |
+| 5  | `openat()`  | Membuka file pada direktori tertentu.                                                          | Membuka file cache library `/etc/ld.so.cache` untuk mencari dependensi.      |
+| 6  | `fstat()`   | Mengambil informasi status file yang dibuka.                                                   | Mengecek ukuran dan tipe file cache library.                                 |
+| 7  | `mmap()`    | Memetakan isi file yang dibuka ke memori.                                                      | Agar lebih efisien dalam membaca data library.                               |
+| 8  | `close()`   | Menutup file descriptor setelah digunakan.                                                     | File cache ditutup setelah selesai dibaca.                                   |
+| 9  | `read()`    | Membaca data dari file descriptor.                                                             | Membaca header ELF library yang dibuka.                                      |
+| 10 | `openat()`  | Membuka library lain seperti `libselinux.so.1`.                                                | Program mulai memuat dependensi yang dibutuhkan untuk eksekusi.              |
+
+
+
+**Tabel Observasi Hasil Eksperimen dmesg**
+| No | Waktu (s) | Pesan Kernel                                                              | Deskripsi / Interpretasi                                                  |
+| -- | --------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| 1  | 2.80      | `systemd-journald[42]: Collecting audit messages is disabled.`            | Kernel mencatat bahwa proses logging audit tidak diaktifkan.              |
+| 2  | 2.91      | `systemd-journald[42]: Received client request to flush runtime journal.` | Sistem logging menerima permintaan untuk membersihkan log sementara.      |
+| 3  | 2.91      | `File /var/log/journal/... corrupted or uncleanly shut down`              | Kernel mendeteksi log sebelumnya rusak dan menggantinya dengan yang baru. |
+| 4  | 3.13      | `ACPI: battery: Slot [BAT1] (battery present)`                            | Kernel mendeteksi keberadaan baterai pada perangkat.                      |
+| 5  | 3.14      | `ACPI: AC Adapter [AC1] (off-line)`                                       | Adaptor daya sedang tidak tersambung.                                     |
+| 6  | 3.48      | `kvm_intel: Using Hyper-V Enlightened VMCS`                               | Kernel mendeteksi sistem berjalan di lingkungan virtual (WSL/Hyper-V).    |
+| 7  | 6.00      | `systemd-journald: user-1000.journal rotating`                            | Kernel melakukan rotasi file log pengguna.                                |
+| 8  | 6.01      | `TCP: eth0: Driver has suspect GRO implementation`                        | Kernel memberi peringatan terkait performa jaringan.                      |
+| 9  | 6.34      | `WSL (214) ERROR: CheckConnection: getaddrinfo() failed`                  | Kernel WSL gagal melakukan resolve jaringan.                              |
+| 10 | 48.47     | `hv_balloon: Max. dynamic memory size: 4024 MB`                           | Kernel melaporkan batas maksimum memori dinamis yang dialokasikan di WSL. |
+
 
 ## Kesimpulan
 Tuliskan 2–3 poin kesimpulan dari praktikum ini.
