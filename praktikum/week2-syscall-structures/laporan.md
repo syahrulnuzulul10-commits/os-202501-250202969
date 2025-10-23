@@ -1,6 +1,7 @@
 
 # Laporan Praktikum Minggu 2
-Topik: Arsitektur Sistem Operasi dan Kernel
+Topik:Struktur System Call dan Fungsi Kernel
+
 
 ---
 
