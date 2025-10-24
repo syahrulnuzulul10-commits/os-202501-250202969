@@ -316,10 +316,48 @@ No	Perintah	Fungsi	Hasil	Kesimpulan
 
 5.	ls -l percobaan.txt (akhir)	Melihat hasil akhir	-rw------- 1 root ervitadwyn ...	File kini hanya bisa diakses oleh root
 
-## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?
+## Analisis1. Makna Hasil Percobaan
+
+Dari seluruh percobaan yang dilakukan, dapat dipahami bahwa sistem operasi Linux memiliki mekanisme pengaturan file yang sangat terstruktur dan aman.
+
+Melalui perintah pwd, ls, dan cd, pengguna dapat melakukan navigasi sistem file secara hierarkis, yang menggambarkan bahwa Linux menggunakan model direktori tunggal yang berakar pada direktori root (/).
+
+Perintah cat /etc/passwd menunjukkan bagaimana Linux menyimpan data pengguna dalam file teks sistem yang mudah dibaca, tetapi dilindungi oleh hak akses tertentu agar tidak disalahgunakan.
+
+Perintah chmod dan chown menunjukkan bahwa setiap file di Linux memiliki tiga lapisan izin akses (owner, group, others). Dengan mengubah nilai permission (misalnya rw-r--r-- menjadi rw-------), pengguna dapat mengatur siapa yang boleh membaca, menulis, atau mengeksekusi file tersebut.
+
+Ketika izin diubah menjadi 600, hanya pemilik file yang dapat mengaksesnya — hal ini mencerminkan penerapan prinsip keamanan berbasis otorisasi pengguna (user-based access control).
+
+Makna utama dari hasil percobaan ini adalah bahwa pengelolaan hak akses di Linux tidak hanya bergantung pada pengguna, tetapi juga dikontrol langsung oleh kernel, sehingga mencegah modifikasi atau akses tidak sah terhadap file sistem.
+
+2. Hubungan Hasil dengan Teori (Kernel, System Call, dan Arsitektur OS)
+
+Secara teoretis, kernel adalah inti dari sistem operasi yang bertugas mengatur semua sumber daya perangkat keras dan memberikan layanan dasar bagi program pengguna. Ketika pengguna menjalankan perintah seperti chmod, chown, atau ls, perintah tersebut tidak langsung mengakses perangkat keras, melainkan mengirimkan permintaan ke kernel melalui system call.
+
+Contohnya:
+
+Saat pengguna menjalankan chmod 600 percobaan.txt, shell akan memanggil system call chmod(). Kernel kemudian mengubah metadata izin file pada sistem berkas (file system) sesuai permintaan.
+
+Saat chown root percobaan.txt dijalankan, shell memanggil system call chown(), dan kernel memperbarui identitas pemilik file di tabel inode (struktur data file system).
+
+Proses ini menunjukkan bahwa semua perubahan yang terjadi di sistem file Linux dikendalikan oleh kernel melalui interface system call, bukan oleh program pengguna secara langsung.
+Dengan demikian, hasil percobaan mendukung teori bahwa kernel bertindak sebagai penghubung antara user space dan hardware, memastikan keamanan serta stabilitas sistem operasi.
+
+Arsitektur Linux yang berbasis monolitik kernel juga memungkinkan semua fungsi manajemen file — seperti izin, kepemilikan, dan keamanan — dilakukan secara efisien di tingkat kernel, tanpa perlu interaksi tambahan dari sistem eksternal.
+
+3. Perbedaan Hasil di Lingkungan OS Berbeda (Linux vs Windows)
+
+Jika percobaan serupa dilakukan di sistem operasi Windows, hasil dan konsep yang diperoleh akan berbeda secara signifikan:
+
+Aspek	Linux	Windows
+Model izin akses	Menggunakan sistem owner–group–others dengan kode numerik (mis. 755, 600)	Menggunakan Access Control List (ACL) yang berisi daftar pengguna dan izin spesifik
+Pengelolaan kepemilikan file	Diatur melalui chown dan dikontrol kernel	Diatur melalui Properties → Security → Owner
+Implementasi kernel	Monolithic kernel – semua fungsi (file system, permission, process management) dijalankan langsung di kernel	Hybrid kernel – beberapa fungsi keamanan dan manajemen file dilakukan di level user mode
+Perintah kontrol izin	chmod, chown, ls -l	GUI (klik kanan → Properties) atau icacls di CMD
+Fokus keamanan	Sederhana, efisien, berbasis pengguna	Lebih kompleks, berbasis objek dan grup pengguna
+
+Dengan demikian, Linux lebih transparan dan efisien dalam pengelolaan izin karena setiap tindakan berbasis terminal langsung terhubung ke kernel, sementara Windows lebih fleksibel dan berorientasi GUI, tetapi memerlukan lapisan tambahan untuk manajemen izin.
+
 ---
 
 ## Kesimpulan
