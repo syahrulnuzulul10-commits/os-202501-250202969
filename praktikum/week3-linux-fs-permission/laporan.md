@@ -134,6 +134,188 @@ Sertakan screenshot hasil percobaan atau diagram:
 
 ---
 
+## Eksperimen 1
+1. Perintah: pwd
+   Memiliki fungsi untuk menampilkan direktori kerja (current working directory) tempat user berada saat ini.
+
+Hasil:
+```bash
+/home/syahrul
+```
+Analisis:
+Menunjukkan bahwa user sedang berada di direktori home milik pengguna bernama ervitadwyn.
+
+2. Perintah: ls -l
+   Memiliki fungsi menampilkan daftar isi direktori dalam format panjang (long listing), yang mencakup:
+   -Jenis file dan izin (permission)
+   -Jumlah link
+   -Pemilik (owner)
+   -Grup
+   -Ukuran file (byte)
+   -Tanggal dan waktu modifikasi
+   -Nama file atau folder
+
+Hasil:
+```bash
+-rw-r--r-- 1 syahrul syahrul ... percobaan.txt
+```
+Analisis:
+Isi folder hanya ada satu file yaitu percobaan.txt, dengan izin:
+-Pemilik: baca dan tulis (rw-)
+-Grup: baca (r--)
+-Lainnya: baca (r--)
+
+3. Perintah: cd /tmp
+   Memiliki fungsi untuk berpindah ke direktori sementara (temporary directory) milik sistem Linux.
+
+Hasil:
+Tidak ada pesan error, artinya perintah berhasil dijalankan.
+-Direktori aktif sekarang: /tmp
+
+4. Perintah: ls -a
+   Memiliki fungsi menampilkan semua isi direktori, termasuk file tersembunyi (yang diawali dengan tanda titik .).
+
+Hasil:
+```bash
+.  
+..  
+.X11-unix  
+snap-private-tmp  
+systemd-private-...  
+```
+| Perintah  | Fungsi                                                                 | Contoh Output                                          | Penjelasan                                  |
+| --------- | ---------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------- |
+| `pwd`     | Menampilkan direktori aktif (current directory)                        | `/home/syahrul/praktikum/week3-linux-fs-permission`    | Menunjukkan di folder mana kamu bekerja     |
+| `ls -l`   | Menampilkan daftar file secara detail (izin, pemilik, ukuran, tanggal) | `-rw-r--r-- 1 syahrul syahrul 20 Oct 24 percobaan.txt` | Terdapat 10 karakter izin: `rw-r--r--`      |
+| `cd /tmp` | Pindah ke folder `/tmp`                                                | —                                                      | Direktori sementara sistem                  |
+| `ls -a`   | Menampilkan semua file termasuk yang tersembunyi (`.` dan `..`)        | `. .. log.txt cache.tmp`                               | File tersembunyi diawali dengan titik (`.`) |
+
+---
+## Eksperimen 2
+Perintah:
+```bash
+cat /etc/passwd | head -n 5
+```
+Memiliki fungsi untuk menampilkan isi file /etc/passwd yang berisi daftar semua user (pengguna) yang terdaftar di sistem Linux.
+| head -n 5 → hanya menampilkan 5 baris pertama dari isi file tersebut.
+seperti :
+```bash
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+```
+Struktur Setiap Baris /etc/passwd
+
+Setiap baris berisi informasi tentang satu akun pengguna dengan 7 kolom yang dipisahkan oleh tanda titik dua (:):
+|  No | Kolom       | Nama Field            | Keterangan                                                                                                            |
+| :-: | :---------- | :-------------------- | :-------------------------------------------------------------------------------------------------------------------- |
+|  1  | `root`      | **Username**          | Nama akun pengguna (login name).                                                                                      |
+|  2  | `x`         | **Password**          | Dulu berisi password terenkripsi, sekarang digantikan dengan `x` karena password disimpan di file lain `/etc/shadow`. |
+|  3  | `0`         | **UID (User ID)**     | Nomor identitas unik untuk pengguna. UID 0 = superuser (root).                                                        |
+|  4  | `0`         | **GID (Group ID)**    | Nomor identitas grup utama pengguna.                                                                                  |
+|  5  | `root`      | **GECOS / Deskripsi** | Keterangan singkat (biasanya nama lengkap atau info tambahan).                                                        |
+|  6  | `/root`     | **Home Directory**    | Lokasi direktori utama milik pengguna.                                                                                |
+|  7  | `/bin/bash` | **Login Shell**       | Shell default yang dijalankan ketika user login (contohnya Bash).         
+
+
+Contoh Analisis Tiap Baris:
+
+| Baris | Username | UID | GID   | Home Directory    | Shell                                             | Keterangan                                 |
+| :---: | :------- | :-- | :---- | :---------------- | :------------------------------------------------ | :----------------------------------------- |
+|   1   | root     | 0   | 0     | /root             | /bin/bash                                         | Superuser, memiliki akses penuh ke sistem. |
+|   2   | daemon   | 1   | 1     | /usr/sbin/nologin | Tidak bisa login, digunakan untuk layanan sistem. |                                            |
+|   3   | bin      | 2   | 2     | /usr/sbin/nologin | Akun sistem untuk menjalankan program biner.      |                                            |
+|   4   | sys      | 3   | 3     | /usr/sbin/nologin | Akun sistem untuk proses sistem internal.         |                                            |
+|   5   | sync     | 4   | 65534 | /bin/sync         | Akun sistem khusus untuk perintah sinkronisasi.   |                                            |
+
+Kesimpulan:
+File /etc/passwd menyimpan data semua akun pengguna di sistem, termasuk akun sistem dan akun manusia.
+Setiap baris berisi informasi login, identitas, dan konfigurasi shell pengguna yang digunakan saat sistem berjalan.
+
+## Eksperimen 3
+
+1. Membuat File Baru
+```bash
+echo "Hello <NAME><NIM>" > percobaan.txt
+```
+Berfungsi membuat file bernama percobaan.txt dan menuliskan teks Hello <NAME><NIM> ke dalamnya.
+Hasilnya file baru percobaan.txt berhasil dibuat di direktori aktif.
+
+Isi file:
+Hello <NAME><NIM>
+
+2. Melihat Detail File (Sebelum chmod)
+```bash  
+ls -l percobaan.txt
+```
+Contoh hasil:
+```bash  
+-rw-r--r-- 1 syahrul syahrul 27 Oct 22 16:33 percobaan.txt
+```
+Analisis hak akses (-rw-r--r--):
+- User (syahrul): dapat membaca dan menulis file (rw-)
+- Group: hanya dapat membaca (r--)
+- Others: hanya dapat membaca (r--)
+Artinya semua pengguna bisa membaca file ini, tapi hanya pemilik yang bisa mengubah isinya.
+
+3. Mengubah Hak Akses File
+```bash  
+chmod 600 percobaan.txt
+```
+Berfungsi mengatur izin file agar hanya pemilik yang bisa membaca dan menulis file.
+
+4. Melihat Detail File (Sesudah chmod)
+```bash  
+ls -l percobaan.txt
+```
+Contoh hasil:
+```bash  
+-rw------- 1 syahrul syahrul 27 Oct 22 oct 16:33 percobaan.txt
+```
+Analisis perubahan:
+Sebelum chmod 600	Sesudah chmod 600	Perubahan
+-rw-r--r--	-rw-------	Grup dan pengguna lain tidak lagi bisa membaca file.
+
+- Kesimpulan perubahan:
+chmod 600 memperketat keamanan file agar hanya pemilik (owner) yang dapat mengaksesnya (membaca/menulis), sementara pengguna lain tidak punya izin apa pun.
+
+5. Mengubah Pemilik File (dengan sudo)
+```bash
+sudo chown root percobaan.txt
+```
+Berfungsi mengubah pemilik file menjadi root (administrator sistem).
+
+6. Melihat Detail File (Setelah chown)
+```bash
+ls -l percobaan.txt
+```
+Contoh hasil:
+```bash
+-rw------- 1 root syahrul 27 Oct 22 16:33 percobaan.txt
+```
+
+Analisis hasil:
+
+Kolom	Sebelum chown	Sesudah chown	Keterangan
+Owner	ervitadwyn	root	File kini dimiliki oleh user root
+Group	ervitadwyn	ervitadwyn	Grup tetap sama
+Permission	rw-------	rw-------	Tidak berubah (masih hanya owner yang bisa akses)
+
+Kesimpulan Akhir Percobaan
+No	Perintah	Fungsi	Hasil	Kesimpulan
+
+1.	echo "Hello <NAME><NIM>" > percobaan.txt	Membuat file baru	File percobaan.txt berisi teks Hello	File berhasil dibuat
+
+2.	ls -l percobaan.txt	Menampilkan detail file	-rw-r--r-- ervitadwyn	Semua user bisa membaca file
+
+3.	chmod 600 percobaan.txt	Mengubah izin file	-rw-------	Hanya pemilik bisa membaca/menulis
+
+4.	sudo chown root percobaan.txt	Mengubah pemilik file	owner = root	File menjadi milik user root
+
+5.	ls -l percobaan.txt (akhir)	Melihat hasil akhir	-rw------- 1 root ervitadwyn ...	File kini hanya bisa diakses oleh root
+
 ## Analisis
 - Jelaskan makna hasil percobaan.  
 - Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
