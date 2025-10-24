@@ -316,7 +316,9 @@ No	Perintah	Fungsi	Hasil	Kesimpulan
 
 5.	ls -l percobaan.txt (akhir)	Melihat hasil akhir	-rw------- 1 root ervitadwyn ...	File kini hanya bisa diakses oleh root
 
-## Analisis1. Makna Hasil Percobaan
+## Analisis
+1.Makna Hasil Percobaan
+---
 
 Dari seluruh percobaan yang dilakukan, dapat dipahami bahwa sistem operasi Linux memiliki mekanisme pengaturan file yang sangat terstruktur dan aman.
 
@@ -330,7 +332,8 @@ Ketika izin diubah menjadi 600, hanya pemilik file yang dapat mengaksesnya — h
 
 Makna utama dari hasil percobaan ini adalah bahwa pengelolaan hak akses di Linux tidak hanya bergantung pada pengguna, tetapi juga dikontrol langsung oleh kernel, sehingga mencegah modifikasi atau akses tidak sah terhadap file sistem.
 
-2. Hubungan Hasil dengan Teori (Kernel, System Call, dan Arsitektur OS)
+2.Hubungan Hasil dengan Teori (Kernel, System Call, dan Arsitektur OS)
+   ---
 
 Secara teoretis, kernel adalah inti dari sistem operasi yang bertugas mengatur semua sumber daya perangkat keras dan memberikan layanan dasar bagi program pengguna. Ketika pengguna menjalankan perintah seperti chmod, chown, atau ls, perintah tersebut tidak langsung mengakses perangkat keras, melainkan mengirimkan permintaan ke kernel melalui system call.
 
@@ -345,16 +348,18 @@ Dengan demikian, hasil percobaan mendukung teori bahwa kernel bertindak sebagai 
 
 Arsitektur Linux yang berbasis monolitik kernel juga memungkinkan semua fungsi manajemen file — seperti izin, kepemilikan, dan keamanan — dilakukan secara efisien di tingkat kernel, tanpa perlu interaksi tambahan dari sistem eksternal.
 
-3. Perbedaan Hasil di Lingkungan OS Berbeda (Linux vs Windows)
+3.Perbedaan Hasil di Lingkungan OS Berbeda (Linux vs Windows)
+   ---
 
 Jika percobaan serupa dilakukan di sistem operasi Windows, hasil dan konsep yang diperoleh akan berbeda secara signifikan:
 
-Aspek	Linux	Windows
-Model izin akses	Menggunakan sistem owner–group–others dengan kode numerik (mis. 755, 600)	Menggunakan Access Control List (ACL) yang berisi daftar pengguna dan izin spesifik
-Pengelolaan kepemilikan file	Diatur melalui chown dan dikontrol kernel	Diatur melalui Properties → Security → Owner
-Implementasi kernel	Monolithic kernel – semua fungsi (file system, permission, process management) dijalankan langsung di kernel	Hybrid kernel – beberapa fungsi keamanan dan manajemen file dilakukan di level user mode
-Perintah kontrol izin	chmod, chown, ls -l	GUI (klik kanan → Properties) atau icacls di CMD
-Fokus keamanan	Sederhana, efisien, berbasis pengguna	Lebih kompleks, berbasis objek dan grup pengguna
+| Aspek                            | Linux                                                                                                          | Windows                                                                                    |
+| :------------------------------- | :------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
+| **Model izin akses**             | Menggunakan sistem *owner–group–others* dengan kode numerik (mis. 755, 600)                                    | Menggunakan *Access Control List (ACL)* yang berisi daftar pengguna dan izin spesifik      |
+| **Pengelolaan kepemilikan file** | Diatur melalui `chown` dan dikontrol kernel                                                                    | Diatur melalui *Properties → Security → Owner*                                             |
+| **Implementasi kernel**          | *Monolithic kernel* – semua fungsi (file system, permission, process management) dijalankan langsung di kernel | *Hybrid kernel* – beberapa fungsi keamanan dan manajemen file dilakukan di level user mode |
+| **Perintah kontrol izin**        | `chmod`, `chown`, `ls -l`                                                                                      | GUI (klik kanan → Properties) atau `icacls` di CMD                                         |
+| **Fokus keamanan**               | Sederhana, efisien, berbasis pengguna                                                                          | Lebih kompleks, berbasis objek dan grup pengguna                                           |
 
 Dengan demikian, Linux lebih transparan dan efisien dalam pengelolaan izin karena setiap tindakan berbasis terminal langsung terhubung ke kernel, sementara Windows lebih fleksibel dan berorientasi GUI, tetapi memerlukan lapisan tambahan untuk manajemen izin.
 
