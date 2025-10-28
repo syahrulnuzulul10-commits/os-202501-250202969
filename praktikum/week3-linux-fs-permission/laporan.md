@@ -366,7 +366,18 @@ Dengan demikian, Linux lebih transparan dan efisien dalam pengelolaan izin karen
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+1.Pemahaman Dasar Sistem File Linux
+Mahasiswa memahami cara navigasi file dan direktori menggunakan perintah dasar seperti ls, pwd, cd, dan cat untuk menelusuri serta membaca struktur sistem file Linux.
+
+
+2.Manajemen Hak Akses dan Kepemilikan File
+Mahasiswa mampu mengatur izin akses file menggunakan chmod serta mengubah kepemilikan file dengan chown, yang penting untuk menjaga keamanan dan kontrol terhadap data di sistem Linux.
+
+
+3.Penerapan dan Dokumentasi Praktikum
+Mahasiswa dapat mendokumentasikan hasil percobaan, menganalisis perubahan permission/ownership, serta mengunggah laporan secara terstruktur ke repositori Git sesuai prosedur praktikum.
+
+
 
 ---
 
