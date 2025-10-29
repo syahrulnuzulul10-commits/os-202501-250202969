@@ -407,8 +407,8 @@ chown digunakan untuk mengubah kepemilikan (ownership) file atau direktori, yait
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+- Apa bagian yang paling menantang minggu ini?  Sempat mengalami trouble pada bagian coding dan perintah Linux, terutama saat mencoba mengatur permission file menggunakan chmod dan chown.
+- Bagaimana cara Anda mengatasinya?  Saya mengatasinya dengan membaca kembali manual page menggunakan perintah man chmod dan man chown, mencoba beberapa contoh perintah di terminal, serta berdiskusi dengan teman untuk memastikan hasilnya sesuai dengan yang diharapkan.
 
 ---
 
