@@ -47,6 +47,7 @@ Sertakan screenshot hasil percobaan atau diagram:
 <img width="1460" height="733" alt="Cuplikan layar 2025-10-29 104739" src="https://github.com/user-attachments/assets/c938b5f7-85c3-4059-a328-05edb1aeac5a" />
 <img width="1269" height="705" alt="Cuplikan layar 2025-10-29 105048" src="https://github.com/user-attachments/assets/6a0f5b59-2a76-4251-ab63-a50848f38fa1" />
 <img width="1444" height="693" alt="Cuplikan layar 2025-10-29 105104" src="https://github.com/user-attachments/assets/d10f7f97-20e7-4024-930e-b167ceb8c3f3" />
+<img width="1201" height="520" alt="diagram pohon" src="https://github.com/user-attachments/assets/6466e296-e876-4dc3-b587-392631992dc7" />
 
 
 ---
