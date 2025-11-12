@@ -163,7 +163,8 @@ Gantt Chart:
 **JAWABAN**
 
 1. 
-2. jawaban ada di tabel eksperimen 2
+2. <img width="1499" height="642" alt="Cuplikan layar 2025-11-12 185547" src="https://github.com/user-attachments/assets/14f65dc6-9e92-4d81-a759-20fb5b85b5f8" />
+
 3. 
    
 (1.) FCFS (First Come First Served)
