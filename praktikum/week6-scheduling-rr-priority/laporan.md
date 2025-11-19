@@ -1,6 +1,6 @@
 
-# Laporan Praktikum Minggu [X]
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
+# Laporan Praktikum Minggu 6
+Topik:Penjadwalan CPU – Round Robin (RR) dan Priority Scheduling
 
 ---
 
@@ -219,9 +219,9 @@ Quantum 5
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
 
----
+---<img width="1351" height="938" alt="Cuplikan layar 2025-11-19 123439" src="https://github.com/user-attachments/assets/95d3ff89-9493-4483-993e-6c4990fb60e9" />
+
 
 ## Analisis
 1.Algoritma Round Robin (RR) menunjukkan bahwa pembagian waktu berbasis time quantum membuat setiap proses mendapatkan kesempatan eksekusi secara merata. Namun, performa sangat bergantung pada besar kecilnya quantum. Quantum terlalu kecil menyebabkan banyak context switching sehingga sistem kurang efisien, sedangkan quantum terlalu besar membuat RR hampir menyerupai FCFS.
