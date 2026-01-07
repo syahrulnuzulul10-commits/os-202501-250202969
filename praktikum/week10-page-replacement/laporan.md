@@ -1,13 +1,13 @@
 
 # Laporan Praktikum Minggu [X]
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
+Topik: Manajemen Memori – Page Replacement (FIFO & LRU)
 
 ---
 
 ## Identitas
-- **Nama**  : [Nama Mahasiswa]  
-- **NIM**   : [NIM Mahasiswa]  
-- **Kelas** : [Kelas]
+- **Nama**  : Syahrul Nuzulul Qori  
+- **NIM**   : 250202969
+- **Kelas** : 1IKRA
 
 ---
 
@@ -43,7 +43,8 @@ dmesg | head
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+<img width="1532" height="1069" alt="Cuplikan layar 2026-01-07 200004" src="https://github.com/user-attachments/assets/86c7012c-c987-496d-88c9-a2e9b61034e3" />
+
 
 ---
 
